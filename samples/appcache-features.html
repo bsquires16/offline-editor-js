@@ -283,7 +283,7 @@
 
                     // We are using Esri bootstrap-map-js to create a responsive mapping app
                     map = BootstrapMap.create("mapDiv",{
-                        center: [-104.99,39.75], // long, lat
+                        center: [-73.9392, 40.7493], // long, lat
                         zoom: 17,
                         sliderStyle: "small"
                     });
@@ -292,8 +292,7 @@
                     map.addLayer(tileLayer);
 
                     // Initialize our feature layer like we normally would
-                    busStopFeatureLayer = new FeatureLayer("http://services1.arcgis.com/M8KJPUwAXP8jhtnM/arcgis/rest/services/Denver_Bus_Stops/FeatureServer/0", {
-                        mode: FeatureLayer.MODE_SNAPSHOT,
+                    busStopFeatureLayer = new FeatureLayer("https://services3.arcgis.com/A6Zjpzrub8ESZ3c7/arcgis/rest/services/AddressPointsforAGOL/FeatureServer/0", {                        mode: FeatureLayer.MODE_SNAPSHOT,
                         outFields: ["GlobalID","BSID","ROUTES","STOPNAME"]
                     });
 
