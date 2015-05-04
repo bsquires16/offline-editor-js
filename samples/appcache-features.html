@@ -343,7 +343,7 @@
                     //execute query
                     var polygonJsonSectorTaskForce = { "rings": [[[-8229060.842858395, 4978230.825341008], [-8228917.5234303605, 4978536.573454148], [-8227866.51429144, 4978374.144769042], [-8228038.497605082, 4978049.287398831], [-8229060.842858395, 4978230.825341008]]], "spatialReference": { "wkid": 102100, "latestWkid": 3857 } };
                     var polygonSectorTaskForce = Polygon(polygonJsonSectorTaskForce);
-                    query.outFields = ["OBJECTID", "ADDRESSPOINTID", "BIN", "BBL", "USPS_per_AP", "AP_per_BIN", "UnitsRes", "NumFloors", "NumBldgs", "LandUse", "OEM_BC", "ESRI_OID"
+                    query.outFields = ["OBJECTID", "ADDRESSPOINTID", "BIN", "BBL", "USPS_per_AP", "AP_per_BIN", "UnitsRes", "NumFloors", "NumBldgs", "LandUse", "OEM_BC", "ESRI_OID"]
                     query.geometry = polygon.getExtent()
                     queryTaskAddressPointLayer.execute(query, createAddressPointFeatureLAyer);
                 }
