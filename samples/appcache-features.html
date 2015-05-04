@@ -168,21 +168,23 @@
 
 <script>
     require(["esri/map","esri/layers/FeatureLayer",
-        "esri/tasks/QueryTask",
+        //"esri/tasks/QueryTask",
         "esri/renderers/SimpleRenderer","esri/symbols/SimpleMarkerSymbol",
-        "esri/symbols/SimpleFillSymbol", "esri/symbols/SimpleLineSymbol",
+        //"esri/symbols/SimpleFillSymbol", "esri/symbols/SimpleLineSymbol",
         "esri/Color",
         "esri/tasks/query",
         "dojo/on",
-        "esri/graphic","esri/geometry/Extent", "esri/SpatialReference","esri/InfoTemplate",
+        "esri/graphic","esri/geometry/Extent", "esri/SpatialReference",//"esri/InfoTemplate",
         "widgets/modal/popup",
         "//esri.github.io/bootstrap-map-js/src/js/bootstrapmap.js",
         "../dist/offline-tiles-advanced-src.js",
         "../dist/offline-edit-src.js",
         "dojo/domReady!"],
-            function(Map,FeatureLayer, QueryTask,
-                SimpleRenderer,SimpleMarkerSymbol, SimpleFillSymbol, SimpleLineSymbol,Color,Query,
-                on,Graphic,Extent,SpatialReference,InfoTemplate,ModalPopup,BootstrapMap) {
+            function(Map,FeatureLayer, //QueryTask,
+                SimpleRenderer,SimpleMarkerSymbol, //SimpleFillSymbol, SimpleLineSymbol,
+                Color,Query,
+                on,Graphic,Extent,SpatialReference,//InfoTemplate,
+                ModalPopup,BootstrapMap) {
 
                 var map = null;
                 var _isOnline = true;
@@ -312,32 +314,32 @@
                 }
                 
                 function initFeatureLayerBuilder(){
-                    //initialize query task
-                    var addressPoint = "https://services3.arcgis.com/A6Zjpzrub8ESZ3c7/arcgis/rest/services/AddressPointsforAGOL/FeatureServer/0"
-                    queryTaskAddressPointLayer = new QueryTask(addressPoint);
+                   ////initialize query task
+                    //var addressPoint = "https://services3.arcgis.com/A6Zjpzrub8ESZ3c7/arcgis/rest/services/AddressPointsforAGOL/FeatureServer/0"
+                    //queryTaskAddressPointLayer = new QueryTask(addressPoint);
 
-                    //initialize query
-                    queryAddressPointLayer = new Query();
-                    queryAddressPointLayer.returnGeometry = true;
-                    queryAddressPointLayer.outFields = ["OBJECTID", "ADDRESSPOINTID", "BIN", "BBL", "USPS_per_AP", "AP_per_BIN", "UnitsRes", "NumFloors", "NumBldgs", "LandUse", "OEM_BC", "ESRI_OID"];
+                    ////initialize query
+                    //queryAddressPointLayer = new Query();
+                    //queryAddressPointLayer.returnGeometry = true;
+                    //queryAddressPointLayer.outFields = ["OBJECTID", "ADDRESSPOINTID", "BIN", "BBL", "USPS_per_AP", "AP_per_BIN", "UnitsRes", "NumFloors", "NumBldgs", "LandUse", "OEM_BC", "ESRI_OID"];
 
-                    //initialize InfoTemplate
-                    infoTemplateAddressPointLayer = new InfoTemplate("<b>ADDRESS POINT ID</b>${ADDRESSPOINTID}", "OBJECTID : ${OBJECTID}<br/> ADDRESSPOINTID : ${ADDRESSPOINTID}<br/> BIN : ${BIN}<br/> BBL : ${BBL}<br/> : ${}<br/> USPS_per_AP : ${USPS_per_AP}<br/> AP_per_BIN : ${AP_per_BIN}<br/> UnitsRes : ${UnitsRes}<br/> NumFloors : ${NumFloors}<br/> NumBldgs : ${NumBldgs}<br/> LandUse : ${LandUse}<br/> OEM_BC  : ${OEM_BC}<br/> ESRI_OID : ${ESRI_OID}");
+                    ////initialize InfoTemplate
+                    //infoTemplateAddressPointLayer = new InfoTemplate("<b>ADDRESS POINT ID</b>${ADDRESSPOINTID}", "OBJECTID : ${OBJECTID}<br/> ADDRESSPOINTID : ${ADDRESSPOINTID}<br/> BIN : ${BIN}<br/> BBL : ${BBL}<br/> : ${}<br/> USPS_per_AP : ${USPS_per_AP}<br/> AP_per_BIN : ${AP_per_BIN}<br/> UnitsRes : ${UnitsRes}<br/> NumFloors : ${NumFloors}<br/> NumBldgs : ${NumBldgs}<br/> LandUse : ${LandUse}<br/> OEM_BC  : ${OEM_BC}<br/> ESRI_OID : ${ESRI_OID}");
 
-                    //create symbol for selected features
-                    symbolAddressPoint = new SimpleMarkerSymbol(
-                        SimpleMarkerSymbol.STYLE_CIRCLE,
-                        14,
-                        new SimpleLineSymbol(
-                            SimpleLineSymbol.STYLE_SOLID,
-                            new Color([1, 133, 113, 0.5]), 12),
-                        new Color([1, 133, 113, 0.9]));
+                    ////create symbol for selected features
+                    //symbolAddressPoint = new SimpleMarkerSymbol(
+                    //    SimpleMarkerSymbol.STYLE_CIRCLE,
+                    //    14,
+                    //    new SimpleLineSymbol(
+                    //        SimpleLineSymbol.STYLE_SOLID,
+                    //        new Color([1, 133, 113, 0.5]), 12),
+                    //    new Color([1, 133, 113, 0.9]));
 
-                    var polygonJsonSectorTaskForce = { "rings": [[[-8229060.842858395, 4978230.825341008], [-8228917.5234303605, 4978536.573454148], [-8227866.51429144, 4978374.144769042], [-8228038.497605082, 4978049.287398831], [-8229060.842858395, 4978230.825341008]]], "spatialReference": { "wkid": 102100, "latestWkid": 3857 } };
-                    var polygonSectorTaskForce = Polygon(polygonJsonSectorTaskForce);
-                    queryAddressPointLayer.outFields = ["OBJECTID", "ADDRESSPOINTID", "BIN", "BBL", "USPS_per_AP", "AP_per_BIN", "UnitsRes", "NumFloors", "NumBldgs", "LandUse", "OEM_BC", "ESRI_OID"]
-                    queryAddressPointLayer.geometry = polygon.getExtent();
-                    queryTaskAddressPointLayer.execute(queryAddressPointLayer, createAddressPointFeatureLAyer);
+                    //var polygonJsonSectorTaskForce = { "rings": [[[-8229060.842858395, 4978230.825341008], [-8228917.5234303605, 4978536.573454148], [-8227866.51429144, 4978374.144769042], [-8228038.497605082, 4978049.287398831], [-8229060.842858395, 4978230.825341008]]], "spatialReference": { "wkid": 102100, "latestWkid": 3857 } };
+                    //var polygonSectorTaskForce = Polygon(polygonJsonSectorTaskForce);
+                    //queryAddressPointLayer.outFields = ["OBJECTID", "ADDRESSPOINTID", "BIN", "BBL", "USPS_per_AP", "AP_per_BIN", "UnitsRes", "NumFloors", "NumBldgs", "LandUse", "OEM_BC", "ESRI_OID"]
+                    //queryAddressPointLayer.geometry = polygon.getExtent();
+                    //queryTaskAddressPointLayer.execute(queryAddressPointLayer, createAddressPointFeatureLAyer);
                 }
 
                 function createAddressPointFeatureLAyer(featureSet) {
