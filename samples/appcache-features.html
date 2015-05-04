@@ -296,7 +296,8 @@
                     map.addLayer(tileLayer);
 
                     // Initialize our feature layer like we normally would
-                    busStopFeatureLayer = new FeatureLayer("https://services3.arcgis.com/A6Zjpzrub8ESZ3c7/arcgis/rest/services/AddressPointsforAGOL/FeatureServer/0", {                        mode: FeatureLayer.MODE_SNAPSHOT,
+                    busStopFeatureLayer = new FeatureLayer("https://services3.arcgis.com/A6Zjpzrub8ESZ3c7/arcgis/rest/services/AddressPointsforAGOLIndexed/FeatureServer/0", //"https://services3.arcgis.com/A6Zjpzrub8ESZ3c7/arcgis/rest/services/AddressPointsforAGOL/FeatureServer/0", 
+                    {   mode: FeatureLayer.MODE_SNAPSHOT,
                         outFields: ["GlobalID","BSID","ROUTES","STOPNAME"]
                     });
 
