@@ -169,7 +169,6 @@
 <script>
     require(["esri/map","esri/layers/FeatureLayer",
         "esri/tasks/QueryTask",
-        "esri/tasks/query",
         "esri/renderers/SimpleRenderer","esri/symbols/SimpleMarkerSymbol",
         "esri/symbols/SimpleFillSymbol", "esri/symbols/SimpleLineSymbol",
         "esri/Color",
@@ -181,7 +180,7 @@
         "../dist/offline-tiles-advanced-src.js",
         "../dist/offline-edit-src.js",
         "dojo/domReady!"],
-            function(Map,FeatureLayer, QueryTask, Query,
+            function(Map,FeatureLayer, QueryTask,
                 SimpleRenderer,SimpleMarkerSymbol, SimpleFillSymbol, SimpleLineSymbol,Color,Query,
                 on,Graphic,Extent,SpatialReference,InfoTemplate,ModalPopup,BootstrapMap) {
 
@@ -334,19 +333,11 @@
                             new Color([1, 133, 113, 0.5]), 12),
                         new Color([1, 133, 113, 0.9]));
 
-                    queryTaskAddressPointLayer.execute(query, showResults);
-
                     var polygonJsonSectorTaskForce = { "rings": [[[-8229060.842858395, 4978230.825341008], [-8228917.5234303605, 4978536.573454148], [-8227866.51429144, 4978374.144769042], [-8228038.497605082, 4978049.287398831], [-8229060.842858395, 4978230.825341008]]], "spatialReference": { "wkid": 102100, "latestWkid": 3857 } };
                     var polygonSectorTaskForce = Polygon(polygonJsonSectorTaskForce);
                     queryAddressPointLayer.outFields = ["OBJECTID", "ADDRESSPOINTID", "BIN", "BBL", "USPS_per_AP", "AP_per_BIN", "UnitsRes", "NumFloors", "NumBldgs", "LandUse", "OEM_BC", "ESRI_OID"]
                     queryAddressPointLayer.geometry = polygon.getExtent();
-
-                    //execute query
-                    var polygonJsonSectorTaskForce = { "rings": [[[-8229060.842858395, 4978230.825341008], [-8228917.5234303605, 4978536.573454148], [-8227866.51429144, 4978374.144769042], [-8228038.497605082, 4978049.287398831], [-8229060.842858395, 4978230.825341008]]], "spatialReference": { "wkid": 102100, "latestWkid": 3857 } };
-                    var polygonSectorTaskForce = Polygon(polygonJsonSectorTaskForce);
-                    query.outFields = ["OBJECTID", "ADDRESSPOINTID", "BIN", "BBL", "USPS_per_AP", "AP_per_BIN", "UnitsRes", "NumFloors", "NumBldgs", "LandUse", "OEM_BC", "ESRI_OID"]
-                    query.geometry = polygon.getExtent()
-                    queryTaskAddressPointLayer.execute(query, createAddressPointFeatureLAyer);
+                    queryTaskAddressPointLayer.execute(queryAddressPointLayer, createAddressPointFeatureLAyer);
                 }
 
                 function createAddressPointFeatureLAyer(featureSet) {
