@@ -372,7 +372,7 @@
                     content = content + "<input type='hidden' name='hdfAdressPointId' id='hdfAdressPointId' value='${ADDRESSPOINTID}'/>";
                     template.setContent(content);
                         
-                    footPrintFeatureLayer = new FeatureLayer(addressPointFeatureCollection, {
+                    busStopFeatureLayer = new FeatureLayer(addressPointFeatureCollection, {
                         id: 'addressPointLayer',
                         name: 'addressPointLayer',
                         mode: FeatureLayer.MODE_SNAPSHOT, //FeatureLayer.MODE_SNAPSHOT, //FeatureLayer.MODE_ONDEMAND,
