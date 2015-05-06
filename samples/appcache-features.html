@@ -310,7 +310,6 @@
                     //on a mobile device.
                     busStopFeatureLayer.setRenderer(new SimpleRenderer(defaultSymbol));
 
-                    initFeatureUpdateEndListener();
                     initMapLoadListener();
 
                     map.addLayer(busStopFeatureLayer);
@@ -352,8 +351,19 @@
                         infoTemplate: template,
                         outFields: ["OBJECTID", "ADDRESSPOINTID", "BIN", "BBL", "USPS_per_AP", "AP_per_BIN", "UnitsRes", "NumFloors", "NumBldgs", "LandUse", "OEM_BC", "ESRI_OID"]
                     });
+                    
+                    var statusAssigned = new SimpleMarkerSymbol(
+                    SimpleMarkerSymbol.STYLE_CIRCLE,
+                    14,
+                    new SimpleLineSymbol(
+                        SimpleLineSymbol.STYLE_SOLID,
+                        new Color([166, 97, 26, 0.5]), 12),
+                    new Color([166, 97, 26, 0.9]));
+                    
                     footPrintFeatureLayer.setRenderer(new SimpleRenderer(statusAssigned));
                     map.addLayer(footPrintFeatureLayer);
+                    
+                    initFeatureUpdateEndListener();
                     
                 }
                 /**
