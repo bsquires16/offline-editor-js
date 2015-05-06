@@ -177,7 +177,7 @@
         "esri/tasks/QueryTask",
         "esri/tasks/query",
         "dojo/on",
-        "esri/graphic","esri/geometry/Extent", "esri/SpatialReference","esri/geometry/Polygon",//"esri/InfoTemplate",
+        "esri/graphic","esri/geometry/Extent", "esri/SpatialReference","esri/geometry/Polygon","esri/InfoTemplate",
         "widgets/modal/popup",
         "//esri.github.io/bootstrap-map-js/src/js/bootstrapmap.js",
         "../dist/offline-tiles-advanced-src.js",
@@ -188,7 +188,7 @@
                 Color,
                 QueryTask, 
                 Query,
-                on,Graphic,Extent,SpatialReference,Polygon,//InfoTemplate,
+                on,Graphic,Extent,SpatialReference,Polygon,InfoTemplate,
                 ModalPopup,BootstrapMap) {
 
                 var map = null;
@@ -356,7 +356,11 @@
                             outFields: ["OBJECTID", "ADDRESSPOINTID", "BIN", "BBL", "USPS_per_AP", "AP_per_BIN", "UnitsRes", "NumFloors", "NumBldgs", "LandUse", "OEM_BC", "ESRI_OID"]
                         });
 
-                        busStopFeatureLayer.setRenderer(new SimpleRenderer(defaultSymbol));
+                        defaultSymbol2 = new SimpleMarkerSymbol().setStyle(
+                                SimpleMarkerSymbol.STYLE_DIAMOND).setColor(
+                                new Color([255,0,0,0.5])).setSize(20);
+                                
+                        busStopFeatureLayer.setRenderer(new SimpleRenderer(defaultSymbol2));
                         initFeatureUpdateEndListener();
                         map.addLayer(busStopFeatureLayer);
                 }
