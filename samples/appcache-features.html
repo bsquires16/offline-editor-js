@@ -304,29 +304,6 @@
                     // Add our offline enabled tile layer to the map
                     map.addLayer(tileLayer);
                     
-                    var template = new InfoTemplate();
-                    template.setTitle("<b>ADDRESS POINT ID</b>${ADDRESSPOINTID}<br>");
-
-                    var content = "<b>Address</b>: ${USPS_per_AP}<br>";
-                    //content = content + "${STREET_NAME}<br>";
-                    //content = content + "<b>City</b>: ${BOROUGHCODE}<br>";
-                    //content = content + "<b>Zip Code</b>: ${ZIPCODE}<br>";
-                    content = content + "<b>Number of buildings</b>: ${NumBldgs} <br>";
-                    content = content + "<b>Number of floors</b>: ${NumFloors}<br>";
-                    content = content + "<b>BIN</b>: ${BIN} <br>";
-                    content = content + "<b>BBL</b>: ${BBL} <br>";
-                    content = content + "<b>BIN</b>: ${BIN} <br>";
-                    content = content + "<b>AP_per_BIN</b>: ${AP_per_BIN} <br>";
-                    content = content + "<b>UnitsRes</b>: ${UnitsRes} <br>";
-                    content = content + "<b>LandUse</b>: ${LandUse} <br>";
-                    content = content + "<b>OEM_BC</b>: ${OEM_BC} <br>";
-                    //content = content + "<b>ESRI_OID</b>: ${ESRI_OID} <br>";
-                    //content = content + "<button onclick=\"Ti.App.fireEvent('app:fromWebView', { message: 'event fired from WebView, handled in Titanium' });\">fromWebView</button>"
-                    content = content + "<button onclick='sendMsg();'>trigger the native app</button><br>";
-                    //content = content + "<button onclick='triggeredByNAAddressSelected(${ADDRESSPOINTID});'>native app drop down</button><br>";
-                    content = content + "<input type='hidden' name='hdfAdressPointId' id='hdfAdressPointId' value='${ADDRESSPOINTID}'/>";
-                    template.setContent(content);
-
                     //// Initialize our feature layer like we normally would
                     //busStopFeatureLayer = new FeatureLayer("https://services3.arcgis.com/A6Zjpzrub8ESZ3c7/arcgis/rest/services/AddressPointsforAGOLIndexed/FeatureServer/0", //"https://services3.arcgis.com/A6Zjpzrub8ESZ3c7/arcgis/rest/services/AddressPointsforAGOL/FeatureServer/0", 
                     //{   mode: FeatureLayer.MODE_SNAPSHOT,
@@ -366,28 +343,50 @@
                 }
 
                 function createAddressPointFeatureLAyer(featureSet) {
-                        addressPointFeatureCollection = {
-                            layerDefinition: addressPointLayerDefinition,
-                            featureSet: featureSet
-                        };
+                    addressPointFeatureCollection = {
+                        layerDefinition: addressPointLayerDefinition,
+                        featureSet: featureSet
+                    };
                         
-                        footPrintFeatureLayer = new FeatureLayer(addressPointFeatureCollection, {
-                            id: 'addressPointLayer',
-                            name: 'addressPointLayer',
-                            mode: FeatureLayer.MODE_SNAPSHOT, //FeatureLayer.MODE_SNAPSHOT, //FeatureLayer.MODE_ONDEMAND,
-                            infoTemplate: template,
-                            outFields: ["OBJECTID", "ADDRESSPOINTID", "BIN", "BBL", "USPS_per_AP", "AP_per_BIN", "UnitsRes", "NumFloors", "NumBldgs", "LandUse", "OEM_BC", "ESRI_OID"]
-                        });
+                    var template = new InfoTemplate();
+                    template.setTitle("<b>ADDRESS POINT ID</b>${ADDRESSPOINTID}<br>");
 
-                        defaultSymbol2 = new SimpleMarkerSymbol().setStyle(
-                                SimpleMarkerSymbol.STYLE_DIAMOND).setColor(
-                                new Color([255,0,0,0.5])).setSize(20);
-                                
-                        busStopFeatureLayer.setRenderer(new SimpleRenderer(defaultSymbol2));
-                        initFeatureUpdateEndListener();
-                        map.addLayer(busStopFeatureLayer);
+                    var content = "<b>Address</b>: ${USPS_per_AP}<br>";
+                    //content = content + "${STREET_NAME}<br>";
+                    //content = content + "<b>City</b>: ${BOROUGHCODE}<br>";
+                    //content = content + "<b>Zip Code</b>: ${ZIPCODE}<br>";
+                    content = content + "<b>Number of buildings</b>: ${NumBldgs} <br>";
+                    content = content + "<b>Number of floors</b>: ${NumFloors}<br>";
+                    content = content + "<b>BIN</b>: ${BIN} <br>";
+                    content = content + "<b>BBL</b>: ${BBL} <br>";
+                    content = content + "<b>BIN</b>: ${BIN} <br>";
+                    content = content + "<b>AP_per_BIN</b>: ${AP_per_BIN} <br>";
+                    content = content + "<b>UnitsRes</b>: ${UnitsRes} <br>";
+                    content = content + "<b>LandUse</b>: ${LandUse} <br>";
+                    content = content + "<b>OEM_BC</b>: ${OEM_BC} <br>";
+                    //content = content + "<b>ESRI_OID</b>: ${ESRI_OID} <br>";
+                    //content = content + "<button onclick=\"Ti.App.fireEvent('app:fromWebView', { message: 'event fired from WebView, handled in Titanium' });\">fromWebView</button>"
+                    content = content + "<button onclick='sendMsg();'>trigger the native app</button><br>";
+                    //content = content + "<button onclick='triggeredByNAAddressSelected(${ADDRESSPOINTID});'>native app drop down</button><br>";
+                    content = content + "<input type='hidden' name='hdfAdressPointId' id='hdfAdressPointId' value='${ADDRESSPOINTID}'/>";
+                    template.setContent(content);
+                        
+                    footPrintFeatureLayer = new FeatureLayer(addressPointFeatureCollection, {
+                        id: 'addressPointLayer',
+                        name: 'addressPointLayer',
+                        mode: FeatureLayer.MODE_SNAPSHOT, //FeatureLayer.MODE_SNAPSHOT, //FeatureLayer.MODE_ONDEMAND,
+                        infoTemplate: template,
+                        outFields: ["OBJECTID", "ADDRESSPOINTID", "BIN", "BBL", "USPS_per_AP", "AP_per_BIN", "UnitsRes", "NumFloors", "NumBldgs", "LandUse", "OEM_BC", "ESRI_OID"]
+                    });
+
+                    defaultSymbol2 = new SimpleMarkerSymbol().setStyle(
+                            SimpleMarkerSymbol.STYLE_DIAMOND).setColor(
+                            new Color([255,0,0,0.5])).setSize(20);
+                            
+                    busStopFeatureLayer.setRenderer(new SimpleRenderer(defaultSymbol2));
+                    initFeatureUpdateEndListener();
+                    map.addLayer(busStopFeatureLayer);
                 }
-
                 /**
                  * If we are offline then the attempt to add the feature layer will fail. The error
                  * will show up in the 'update-end' event.
