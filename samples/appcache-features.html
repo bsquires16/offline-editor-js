@@ -307,8 +307,6 @@
 <div id="modal-popup"></div>
 
 <script>
-
-    $("#btnSelectAddressPoint").hide();
         
     require(["esri/map","esri/layers/FeatureLayer",
         "esri/renderers/SimpleRenderer","esri/symbols/SimpleMarkerSymbol",
@@ -1035,6 +1033,8 @@
             $('#hdfAdressPointIdFromNA').val(addressPointId);
             $("#btnSelectAddressPoint").click();
         }
+        
+        $("#btnSelectAddressPoint").hide();
 </script>
 
 <!-- Bootstrap core JavaScript
