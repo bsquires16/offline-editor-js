@@ -570,7 +570,7 @@
 
                                     // Set click listeners
                                     on(btnGetTiles,"click",downloadTiles);
-                                    on(btnOnlineOffline, 'click', goOnlineOffline);
+                                    //on(btnOnlineOffline, 'click', goOnlineOffline);
 
                                     initPanZoomListeners();
                                     setFeatureLayerClickHandler();
@@ -650,7 +650,7 @@
                             var mapListen = map.on("update-end",function(evt) {
                                 console.log("Feature has been added back to the map while offline.");
                                 on(btnGetTiles,"click",downloadTiles);
-                                on(btnOnlineOffline, 'click', goOnlineOffline);
+                                //on(btnOnlineOffline, 'click', goOnlineOffline);
 
                                 setFeatureLayerClickHandler();
                                 setModalPopupClickListeners();
