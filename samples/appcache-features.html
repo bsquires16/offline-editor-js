@@ -350,8 +350,10 @@
                 var _currentExtent = null;
                 var _wantToCancel;
                 var globalState = {};
-                var btnGetTiles = document.getElementById("btnDownload");//document.getElementById("btn-get-tiles");
+                var btnGetTiles = document.getElementById("btnDownload2");//document.getElementById("btn-get-tiles");
                 //var btnOnlineOffline = document.getElementById("btn-online-offline");
+                var divProgress = document.getElementById("progress");
+                var spanProgression = document.getElementById("progessionSpan");
 
                 // Important settings for determining which tile layers gets stored for offline use.
                 var minZoomAdjust = -1, maxZoomAdjust = 1;
@@ -1042,6 +1044,9 @@
         }
         
         $("#btnSelectAddressPoint").hide();
+        $('#progress').show();
+
+
 </script>
 
 </body>
