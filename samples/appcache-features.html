@@ -247,7 +247,7 @@
 <body>
 
 <!-- Our buttons and online/offline indicator -->
-<div class="container">
+<!--<div class="container">
     <div class="row">
         <div class="col-xs-10">
             <div class="form form-group btn-group" data-toggle="buttons">
@@ -259,7 +259,7 @@
         </div>
         <div class="col-xs-2">
             <!-- this indicates whether app is offline (down) or online (up) -->
-            <button id="btn-state" class="btn btn-success btn-large floatRight">
+            <!--<button id="btn-state" class="btn btn-success btn-large floatRight">
                 <span id="state-span" class="glyphicon glyphicon-link"> Up</span>
             </button>
         </div>
@@ -269,7 +269,7 @@
             <div id="mapDiv"></div>
         </div>
     </div>
-</div>
+</div>-->
 
 <div class="container">
     <div class="mode_row">
@@ -437,8 +437,10 @@
 
                     // We are using Esri bootstrap-map-js to create a responsive mapping app
                     map = BootstrapMap.create("mapDiv",{
-                        center: [-73.9392, 40.7493], // long, lat
-                        zoom: 17,
+                        logo: false,
+                        showAttribution: false,
+                        //center: [-73.9392, 40.7493], // long, lat
+                        zoom: 20,
                         sliderStyle: "small"
                     });
                     
