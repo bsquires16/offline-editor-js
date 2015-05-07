@@ -341,17 +341,17 @@
 
                 // Variables for editing handling
                 var currentFeature, busStopFeatureLayer = null, offlineFeaturesManager = null;
-                var pendingEdits = document.getElementById("span-pending-edits");
-                var imgOfflineIndicator = document.getElementById("state-span");
-                var btnState = document.getElementById("btn-state");
+                //var pendingEdits = document.getElementById("span-pending-edits");
+                //var imgOfflineIndicator = document.getElementById("state-span");
+                //var btnState = document.getElementById("btn-state");
 
                 // Variables for handling tiles
                 var tileLayer;
                 var _currentExtent = null;
                 var _wantToCancel;
                 var globalState = {};
-                var btnGetTiles = document.getElementById("btn-get-tiles");
-                var btnOnlineOffline = document.getElementById("btn-online-offline");
+                var btnGetTiles = document.getElementById("btnDownload");//document.getElementById("btn-get-tiles");
+                //var btnOnlineOffline = document.getElementById("btn-online-offline");
 
                 // Important settings for determining which tile layers gets stored for offline use.
                 var minZoomAdjust = -1, maxZoomAdjust = 1;
@@ -795,12 +795,12 @@
                 }
 
                 function showModalPopup(graphic) {
-                    popup.graphic = graphic; // assign graphic to popup as a property.
-                    popup.show();
+                    //popup.graphic = graphic; // assign graphic to popup as a property.
+                    //popup.show();
                 }
 
                 function hideModalPopup() {
-                    popup.hide();
+                    //popup.hide();
                 }
 
                 function getFeatureLayerJSON() {
@@ -940,17 +940,17 @@
                 }
 
                 function setUIOnline() {
-                    btnOnlineOffline.innerHTML = "2. Go Offline";
-                    imgOfflineIndicator.className = "glyphicon glyphicon-link";
-                    imgOfflineIndicator.innerHTML = " Up";
-                    btnState.className = "btn btn-success btn-large floatRight";
+                    //btnOnlineOffline.innerHTML = "2. Go Offline";
+                    //imgOfflineIndicator.className = "glyphicon glyphicon-link";
+                    //imgOfflineIndicator.innerHTML = " Up";
+                    //btnState.className = "btn btn-success btn-large floatRight";
                 }
 
                 function setUIOffline() {
-                    btnOnlineOffline.innerHTML = "2. Go Online";
-                    imgOfflineIndicator.className = "glyphicon glyphicon-thumbs-down";
-                    imgOfflineIndicator.innerHTML = " Down";
-                    btnState.className = "btn btn-danger btn-large floatRight";
+                    //btnOnlineOffline.innerHTML = "2. Go Online";
+                    //imgOfflineIndicator.className = "glyphicon glyphicon-thumbs-down";
+                    //imgOfflineIndicator.innerHTML = " Down";
+                    //btnState.className = "btn btn-danger btn-large floatRight";
                 }
 
                 /**
@@ -1013,14 +1013,14 @@
                 function editsEnqueued() {
 
                     busStopFeatureLayer.pendingEditsCount(function(count) {
-                        pendingEdits.innerHTML = count;
+                        //pendingEdits.innerHTML = count;
                     });
                 }
 
                 function allEditsSent(){
 
                     busStopFeatureLayer.pendingEditsCount(function(count) {
-                        pendingEdits.innerHTML = count;
+                        //pendingEdits.innerHTML = count;
                     });
                 }
 
@@ -1030,7 +1030,7 @@
 
                 function updateStatus() {
                     busStopFeatureLayer.pendingEditsCount(function(count) {
-                        pendingEdits.innerHTML = count;
+                        //pendingEdits.innerHTML = count;
                     });
                 }
             });
