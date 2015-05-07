@@ -77,7 +77,7 @@
 //        },false)
     </script>
 
-    <style>
+ <!--   <style>
         #mapDiv {
             min-height: 400px;
             max-height: 1000px;
@@ -99,6 +99,111 @@
 
         .floatRight { float: right;}
         .container { padding: 20px; width: 100%;}
+    </style>-->
+    
+    <style>
+        #mapDiv {
+            height:100%; min-height:100%;
+        }
+
+        html body {
+            background-color: #ffffff;
+            overflow: hidden;
+            font-family: "Trebuchet MS";
+            height: 100%;
+            min-height: 100%;
+        }
+
+        #loader-gif{
+            visibility: hidden;
+        }
+
+        /* Override mod-popup default */
+        .mod-popup-stop-input {color: black;}
+        .span-pending {color: blue; padding-left: 1em;}
+        .floatRight { float: right;}
+        .container { padding: 0px; width: 100%; height:100%;}
+        .overlay {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          z-index: 10;
+          background-color: rgba(0,0,0,0.5); /*dim the background*/  
+        }
+       
+        #modal
+        {
+            width: 300px;
+            height: 100px;
+            line-height: 100px;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            margin-top: -100px;
+            margin-left: -150px;
+            background-color: #fff;
+            border-radius: 5px;
+            text-align: center;
+            border:1px solid #000000;
+            z-index: 11; /* 1px higher than the overlay layer */
+        }
+     
+        .modalLoading
+        {
+            width: 300px;
+            height: 100px;
+            line-height: 100px;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            margin-top: -100px;
+            margin-left: -150px;
+            border-radius: 5px;
+            text-align: center;
+            z-index: 11; /* 1px higher than the overlay layer */
+        }
+
+        .loading {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          z-index: 10;
+        }
+
+        .info {
+          position: absolute;
+          top: 0px;
+          left: 0px;
+          padding-right: 10px;
+          width: 100%;
+          height: 40px;
+          z-index: 10;
+          background-color: rgba(0,0,0,0.03); /*dim the background*/  
+          color:#bcg;
+          text-align:right;
+          font-weight:200;
+        }
+       
+        .mod_col-xs-12
+        {
+            position: relative;
+            min-height: 1px;
+            /*padding-right: 15px;*/
+           /*padding-left: 15px;*/
+            width: 100%;
+            height: 100%;
+        }
+       
+        .mode_row {
+            /*margin-right: -15px;*/
+            /*margin-left: -15px;*/
+            width: 100%;
+            height: 100%;
+         }
     </style>
 
     <script src="../vendor/offline/offline.min.js"></script>
@@ -165,6 +270,38 @@
         </div>
     </div>
 </div>
+
+<div class="container">
+    <div class="mode_row">
+        <div id="loading" class="loading">
+            <div class="modalLoading"><img id="Img1" src="images/loading.gif"/></div>
+        </div>
+        <div id="overlay" class="overlay" style="display:none;">       
+            <div id="modal">
+                <button id="btnDownload" class="btn btn-success btn-large">Download</button>
+            </div>
+        </div>
+        <div class="mod_col-xs-12">
+            <div id="progress" class="info" style="display:none;"><button id="btnDownload2" class="btn btn-success btn-large">Download</button><span id="progessionSpan">Downloading <img id="Img2" src="images/loading.gif"/></span></div>
+            <button class="btn btn-success" id="Button1" style="display:none;">Download Tiles</button>
+            <button class="btn btn-success" disabled id="Button2" style="display:none;">2. Go Offline</button>
+            <button id="Button3" class="btn btn-success btn-large floatRight" style="display:none;">
+                <span id="Span1" class="glyphicon glyphicon-link"> Up</span>
+            </button>
+            <span class="span-pending" style="display:none;">Pending Edits <span id="span2" class="badge">0</span></span>                    
+            <div id="mapDiv"></div>
+            <input type="hidden" id="hdnnativeDownloadClick" value="0"/>
+            <input type="hidden" id="hdnbtnDownloadLoaded" value="0"/>            
+            <input type="hidden" id="hdfAdressPointIdFromNA" value="0"/>
+            <input type="hidden" id="hdfsectorTaskForce" value="0"/>
+            <button id="btnSelectAddressPoint" type="button"></button>
+           <!-- <button id="btnLoadSectorTaskForce" type="button"></button>-->
+        </div>
+        <!--<div id="info" style="padding:5px; margin:5px; background-color:#eee;"></div>-->
+      </div>
+</div>
+
+
 
 <!-- Stub for modal editing popup -->
 <div id="modal-popup"></div>
@@ -402,7 +539,7 @@
                 function initFeatureUpdateEndListener() {
 
                     busStopFeatureLayer.on("update",function(evt){
-
+                        $("#loading").hide();
                         //**************************************************
                         //
                         // This is where we detect an offline condition
