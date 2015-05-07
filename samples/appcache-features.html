@@ -336,7 +336,7 @@
                         queryAddressPointLayer.geometry = polygonSectorTaskForce.getExtent();
                         
                         _currentExtent = polygonSectorTaskForce.getExtent();
-                        centerSectorTaskForce = polygon.getExtent().getCenter();
+                        centerSectorTaskForce = polygonSectorTaskForce.getExtent().getCenter();
                         map.centerAndZoom(centerSectorTaskForce, 20); 
                         
                         $.getJSON(addressPointJSON, function (data) {
