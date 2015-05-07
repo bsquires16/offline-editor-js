@@ -219,6 +219,7 @@
 
                 // Variables for modal popup
                 var popup,closeBtn,saveBtn,deleteBtn,stopMainID,stopID,stopRoutes,stopNames;
+                var centerSectorTaskForce;
 
                 mediaQueries();
                 initModalPopup();
@@ -333,7 +334,10 @@
                         var polygonSectorTaskForce = Polygon(polygonJsonSectorTaskForce);
                         queryAddressPointLayer.outFields = ["OBJECTID", "ADDRESSPOINTID", "BIN", "BBL", "USPS_per_AP", "AP_per_BIN", "UnitsRes", "NumFloors", "NumBldgs", "LandUse", "OEM_BC", "ESRI_OID"]
                         queryAddressPointLayer.geometry = polygonSectorTaskForce.getExtent();
+                        
                         _currentExtent = polygonSectorTaskForce.getExtent();
+                        centerSectorTaskForce = polygon.getExtent().getCenter();
+                        map.centerAndZoom(centerSectorTaskForce, 20); 
                         
                         $.getJSON(addressPointJSON, function (data) {
                             addressPointLayerDefinition = {
